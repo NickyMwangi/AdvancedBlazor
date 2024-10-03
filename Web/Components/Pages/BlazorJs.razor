@@ -1,12 +1,26 @@
 ﻿@page "/blazor-js"
+@inject IJSRuntime _JsRuntime;
 
 <PageTitle>Javascripts in Blazor</PageTitle>
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-12">
         <h3 class="text-primary">Using Javascript in Blazor</h3>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-outline-success" @onclick="ToastrSuccess">Toastr Success</button>
+        <button class="btn btn-outline-danger" @onclick="ToastrError">Toastr Error</button>
     </div>
 </div>
 
 @code {
-
+    private async Task ToastrSuccess()
+    {
+        // await _JsRuntime.InvokeVoidAsync("showToastr","success","I have been invoked with success message from success btn.");
+        await _JsRuntime.ShowToastr("success", "I have been invoked with success message from success btn.");
+    }
+    private async Task ToastrError()
+    {
+        // await _JsRuntime.InvokeVoidAsync("showToastr", "error", "I have been invoked with error message from error btn.");
+        await _JsRuntime.ShowToastr("error", "I have been invoked with error message from error btn.");
+    }
 }
