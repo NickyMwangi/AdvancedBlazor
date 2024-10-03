@@ -1,0 +1,19 @@
+﻿@page "/parent-child"
+<h3>Parent/Child Component</h3>
+
+<CascadingValue Value="@GrandChldMessage">
+    <_Child Title="This title is passed as a parameter from the parent component" OnButtonClick="ShowMessage">
+    <p>This is a text between the tags from the parent component!!!</p>
+    <h4>@messageTxt</h4>
+</_Child>
+</CascadingValue>
+
+@code {
+    public string messageTxt = string.Empty;
+    public string GrandChldMessage = "I am a grand child message from the parent";
+    private void ShowMessage()
+    {
+        messageTxt = "Button inside child component was clicked.";
+    }
+
+}

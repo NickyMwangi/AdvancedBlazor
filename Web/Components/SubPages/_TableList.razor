@@ -1,0 +1,32 @@
+﻿
+  <div class="row">
+    <div class="col-12">
+        <h3>List of Products</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>IsActive</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prod in productsList)
+                {
+                    <tr>
+                        <td><input type="text" @bind="@prod.Name" @bind:event="oninput" /></td>
+                        <td><input type="text" @bind="@prod.Description" @bind:event="oninput" /></td>
+                        <td><input type="number" @bind="@prod.Price" @bind:event="oninput" /></td>
+                        <td><input type="checkbox" @bind="@prod.IsActive" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+  </div>
+@code {
+    [Parameter]
+    public List<Product> productsList { get; set; } = new();
+
+}

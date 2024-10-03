@@ -1,0 +1,15 @@
+﻿<div class="row">
+    <div class="col-12">
+        <h3>I am a grand child component</h3>
+        <div>
+            <div class="alert alert-info">
+                @GrandChildMsg
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    public string GrandChildMsg{ get; set; } = string.Empty;
+}

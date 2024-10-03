@@ -1,0 +1,33 @@
+﻿<div class="row">
+    <div class="col-12">
+        <div>
+            <div class="alert alert-info">
+                @Title
+            </div>
+        </div>
+
+        @if (ChildContent!=null)
+        {
+            <div>
+                <div class="alert alert-primary">
+                    @ChildContent
+                </div>
+            </div>
+        }
+        <div>
+            <button type="button" class="btn btn-danger btn-sm" @onclick="OnButtonClick"> Child Click Event!!!!</button>
+            <_GrandChild></_GrandChild>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; } //Used to render content inside the child
+
+    [Parameter]
+    public EventCallback OnButtonClick { get; set; }
+}

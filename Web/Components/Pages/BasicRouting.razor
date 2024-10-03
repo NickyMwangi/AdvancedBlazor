@@ -1,0 +1,45 @@
+﻿
+@* One page can have multiple routes *@
+@page "/basic-routing"
+@page "/basic-routing/{ParamOne}/{ParamTwo}"
+@page "/basic-routing/{ParamOne}"
+@page "/basic-routing/catchAll/{*PageParams}"
+@page "/basic-routing/extended"
+@inject NavigationManager _navManager;
+
+@*Navigation using href*@
+<a href="basic-routing?ParamOne=order&ParamTwo=shdjdsydhgg" class="btn btn-primary">Navigate to queried page</a>
+@*Navigation using a function*@
+<button type="button" class="btn btn-outline-warning" @onclick="NavigateToQueryParams">Btn Navigation</button>
+
+<div class="row">
+    <div class="col-12">
+        <h4 class="text-primary">Understanding routing</h4>
+        <p> parameter One is: @ParamOne </p>
+        <p>parameter two is: @ParamTwo</p>
+        <button class="btn btn-success" @onclick="LoadParameters">Load Parameters</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? ParamOne { get; set; } = string.Empty;
+    [Parameter]
+    public string? ParamTwo { get; set; } = string.Empty;
+
+    [Parameter]
+    public string PageParams { get; set; } = string.Empty;
+
+    private void LoadParameters()
+    {
+        var uri = new Uri(_navManager.Uri);
+        var query = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query);
+        ParamOne = query["ParamOne"];
+        ParamTwo = query["ParamTwo"];
+    }
+
+    private void NavigateToQueryParams()
+    {
+        _navManager.NavigateTo("basic-routing?ParamOne=order&ParamTwo=shdjdsydhgg");
+    }
+}
