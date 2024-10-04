@@ -1,0 +1,51 @@
+﻿<h3 class="text-success">Blazor LifeCycle child component</h3>
+    
+<hr />
+@foreach (var n in EventTypes)
+{
+    <p>@n</p>
+    <hr />
+}
+<h2 class="text-success">Current Value in Childe is: <span class="text-primary">@CountValue</span></h2>
+
+@code {
+    List<string> EventTypes = new();
+    [Parameter]
+    public int CountValue { get; set; }
+
+    @*OnInitializedAsync and OnInitialized are called after the component has fully loaded*@
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        EventTypes.Add("OnInitializeAsync in child component");
+    }
+
+    protected override void OnInitialized()
+    {
+        EventTypes.Add("OnInitialize in child component");
+    }
+
+    @*OnParametersSetAsync and OnParametersSet are called when component is first initialized and each time new or updated parameters are received from the parent in the render state*@
+    protected override void OnParametersSet()
+    {
+        EventTypes.Add("OnParametersSet in child componet");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await Task.Delay(10);
+        EventTypes.Add("OnParametersSetAsync in child component.");
+    }
+
+    @*OnAfterRenderAsync and OnAfterRender are called after the component has already rendered. You cannot see its value on first render but on the second render.*@
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await Task.Delay(10);
+        EventTypes.Add("OnAfterRenderAsync in child");
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        EventTypes.Add("OnAfterRender in child");
+    }
+}
