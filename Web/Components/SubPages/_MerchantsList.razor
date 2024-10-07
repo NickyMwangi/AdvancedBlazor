@@ -1,0 +1,36 @@
+﻿
+<div class="row">
+    <div class="col-12">
+        <h3>List of Merchants</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>RS Type</th>
+                    <th>Business Type</th>
+                    <th>Card Type</th>
+                    <th>Account Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dt in mertchantsList)
+                {
+                    <tr>
+                        <td><p class="small">@dt.Name</p></td>
+                        <td><p class="small">@dt.LupCountry</p></td>
+                        <td><p class="small">@dt.LupRSType</p></td>
+                        <td><p class="small">@dt.BusinessType</p></td>
+                        <td><p class="small">@dt.LupCardType</p></td>
+                        <td><p class="small">@dt.LupAcctType</p></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public List<Merchant> mertchantsList { get; set; } = new();
+
+}

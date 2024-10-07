@@ -1,0 +1,48 @@
+﻿@page "/merchants"
+@inject IMerchantRepository _repo;
+
+@if (IsProcessing)
+{
+    <div class="position-absolute w-75 h-75 d-flex flex-column align-items-center bg-white justify-content-center">
+        <h4 class="text-success fst-italic">Loading.....</h4>
+    </div>
+}
+else
+{
+    <div class="card shadow border-0 mt-4">
+        <div class="card-header bg-black bg-gradient m-lg-0 py-1">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-white py-2">Merchants List</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-3">
+            <div class="row">
+                <div class="col-12 text-start">
+                    <button class="btn btn-lg btn-secondary">Generate XML</button>
+                </div>
+            </div>
+            @if (merchants.Any())
+            {
+                <_MerchantsList mertchantsList="@merchants"></_MerchantsList>
+            }
+        </div>
+    </div>
+}
+@code {
+    private bool IsProcessing { get; set; } = true;
+    List<Merchant> merchants = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(100);
+        LoadMerchants();
+        IsProcessing = false;
+    }
+
+    public void LoadMerchants()
+    {
+        merchants = _repo.GetAll();
+    }
+}

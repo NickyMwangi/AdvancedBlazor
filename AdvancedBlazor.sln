@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{3E48086B-C374-4C64-B7F8-7668E061460C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{F734F6C7-2723-4B1A-A35C-1D822BB62175}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{F734F6C7-2723-4B1A-A35C-1D822BB62175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

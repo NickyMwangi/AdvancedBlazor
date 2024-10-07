@@ -1,4 +1,4 @@
-﻿using Web.Data;
+﻿using Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace Web.Components.Account
