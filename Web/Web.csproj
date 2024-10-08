@@ -46,7 +46,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\Iconsfonts\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\js\plugins\" />
   </ItemGroup>
 
 </Project>
