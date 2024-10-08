@@ -1,8 +1,24 @@
 ﻿@inherits LayoutComponentBase
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
 
 <div class="page">
-    <div class="sidebar">
+    <div class="page-main">
+        <Topheader />
         <NavMenu />
+        <!-- App-Content -->
+        <div class="hor-content main-content">
+            <div class="container">
+                @Body
+            </div>
+        </div>
     </div>
 
     <main>

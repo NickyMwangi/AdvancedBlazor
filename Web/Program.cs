@@ -7,6 +7,7 @@ using Web.Components.Account;
 using Data;
 using Data.IRepository;
 using Data.Repository;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,7 @@ builder.Services.AddIdentityCore<WebUser>(options => options.SignIn.RequireConfi
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<WebUser>, IdentityNoOpEmailSender>();
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 

@@ -1,99 +1,157 @@
 ﻿@implements IDisposable
 @inject NavigationManager NavigationManager
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Web</a>
+
+
+<div class="sticky">
+    <div class="horizontal-main hor-menu clearfix">
+        <div class="horizontal-mainwrapper container clearfix">
+            <nav class="horizontalMenu clearfix">
+               <div class="horizontalMenu-list">
+                    <NavLink href="" Match="NavLinkMatch.All">
+                        <span class="hor-icon fa fa-home" aria-hidden="true"></span> Home
+                    </NavLink>
+                    <NavLink href="counter">
+                        <span class="hor-icon fa fa-calculator" aria-hidden="true"></span> Count
+                    </NavLink>
+                    <NavLink href="merchants">
+                        <span class="hor-icon fa fa-users" aria-hidden="true"></span> Merchants
+                    </NavLink>
+                    <AuthorizeView>
+                        <Authorized>
+                            <NavLink href="Account/Manage">
+                                <span class="hor-icon fa fa-home" aria-hidden="true"></span> @context.User.Identity?.Name
+                            </NavLink>
+                            <NavLink href="/bind-props">
+                                <span class="hor-icon fa fa-calculator" aria-hidden="true"></span> Data Binding
+                            </NavLink>
+                            <NavLink href="/parent-child">
+                                <span class="hor-icon fa fa-users" aria-hidden="true"></span> Parent Child
+                            </NavLink>
+                            <NavLink href="/basic-routing">
+                                <span class="hor-icon fa fa-users" aria-hidden="true"></span> Basic routing
+                            </NavLink>
+                            <NavLink href="/blazor-js">
+                                <span class="hor-icon fa fa-users" aria-hidden="true"></span> Blazor JS
+                            </NavLink>
+                            <NavLink href="lifecycle">
+                                <span class="hor-icon fa fa-users" aria-hidden="true"></span> Blazor LifeCycle
+                            </NavLink>
+                            <NavLink href="forms">
+                                <span class="hor-icon fa fa-users" aria-hidden="true"></span> Forms
+                            </NavLink>
+                            <div class="nav-item px-3">
+                                <form action="Account/Logout" method="post">
+                                    <AntiforgeryToken />
+                                    <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                                    <button type="submit" class="nav-link">
+                                        <span class="fa fa-sign-in" aria-hidden="true"></span> Logout
+                                    </button>
+                                </form>
+                            </div>
+                        </Authorized>
+                        <NotAuthorized>
+                                <NavLink href="Account/Register">
+                                    <span class="hor-icon fa-user-plus" aria-hidden="true"></span> Register
+                                </NavLink>
+                 
+                                <NavLink href="Account/Login">
+                                    <span class="hor-icon fa-sign-in" aria-hidden="true"></span> Login
+                                </NavLink>
+                
+                        </NotAuthorized>
+                    </AuthorizeView>
+               </div>
+            </nav>
+        </div>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+ @* <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+     <nav class="flex-column">
+         <div class="nav-item px-3">
+             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+             </NavLink>
+         </div>
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+         <div class="nav-item px-3">
+             <NavLink class="nav-link" href="counter">
+                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+             </NavLink>
+         </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="merchants">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Merchants
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="auth">
-                <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
-            </NavLink>
-        </div>
-        <AuthorizeView>
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Manage">
-                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/bind-props">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Data Binding
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/parent-child">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Parent/Child
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/basic-routing">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Basic Routing
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/blazor-js">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Js in Blazor
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/lifecycle">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Life Cycle
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/forms">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Blazor Forms
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <form action="Account/Logout" method="post">
-                        <AntiforgeryToken />
-                        <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                        <button type="submit" class="nav-link">
-                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
-                        </button>
-                    </form>
-                </div>
-            </Authorized>
-            <NotAuthorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Register">
-                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Login">
-                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
-                    </NavLink>
-                </div>
-            </NotAuthorized>
-        </AuthorizeView>
-    </nav>
-</div>
+         <div class="nav-item px-3">
+             <NavLink class="nav-link" href="merchants">
+                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Merchants
+             </NavLink>
+         </div>
+         <div class="nav-item px-3">
+             <NavLink class="nav-link" href="auth">
+                 <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
+             </NavLink>
+         </div>
+         <AuthorizeView>
+             <Authorized>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="Account/Manage">
+                         <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="/bind-props">
+                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Data Binding
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="/parent-child">
+                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Parent/Child
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="/basic-routing">
+                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Basic Routing
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="/blazor-js">
+                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Js in Blazor
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="/lifecycle">
+                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Life Cycle
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="/forms">
+                         <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Blazor Forms
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <form action="Account/Logout" method="post">
+                         <AntiforgeryToken />
+                         <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                         <button type="submit" class="nav-link">
+                             <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                         </button>
+                     </form>
+                 </div>
+             </Authorized>
+             <NotAuthorized>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="Account/Register">
+                         <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+                     </NavLink>
+                 </div>
+                 <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="Account/Login">
+                         <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                     </NavLink>
+                 </div>
+             </NotAuthorized>
+         </AuthorizeView>
+     </nav>
+ </div> *@
 
 @code {
     private string? currentUrl;
