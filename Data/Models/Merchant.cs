@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace Data.Models
 {
+    [Serializable]
+    [XmlRoot("TSS")]
     public class Merchant
     {
+        [XmlElement("MID")]
         public Guid Id { get; set; } = new Guid();
         [Required]
         public string Name { get; set; } = string.Empty;

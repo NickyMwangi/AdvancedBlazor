@@ -1,6 +1,12 @@
-﻿
+﻿@using System.Xml.Serialization
+
   <div class="row">
     <div class="col-12">
+        <div class="row">
+            <div class="col-12 text-start">
+                <button @onclick="GenerateXML" class="btn btn-sm btn-secondary">Generate XML</button>
+            </div>
+        </div>
         <h3>List of Products</h3>
         <table class="table table-striped">
             <thead>
@@ -28,5 +34,14 @@
 @code {
     [Parameter]
     public List<Product> productsList { get; set; } = new();
+    private void GenerateXML()
+    {
+        var prodXmlSerializer = new XmlSerializer(typeof(List<Product>));
+        using (var writer = new StreamWriter(@"\\PERLAPT\ProjectDocs\productsXml.xml"))
+        {
+            prodXmlSerializer.Serialize(writer, productsList);
+        }
+    }
+
 
 }
